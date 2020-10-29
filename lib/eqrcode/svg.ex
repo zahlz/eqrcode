@@ -32,6 +32,8 @@ defmodule EQRCode.SVG do
     svg_options = options |> Map.new() |> set_svg_options(matrix_size)
     dimension = matrix_size * svg_options[:module_size]
 
+    skip_xml_tag = Keyword.get(options, :skip_xml_tag, false)
+
     xml_tag = ~s(<?xml version="1.0" standalone="yes"?>)
 
     dimension_attrs =
@@ -58,7 +60,16 @@ defmodule EQRCode.SVG do
       end)
       |> Enum.to_list()
 
-    Enum.join([xml_tag, open_tag, result, close_tag], "\n")
+    content = [open_tag, result, close_tag]
+
+    content =
+      if skip_xml_tag do
+        content
+      else
+        [xml_tag | content]
+      end
+
+    Enum.join(content, "\n")
   end
 
   defp set_svg_options(options, matrix_size) do
@@ -105,7 +116,7 @@ defmodule EQRCode.SVG do
     |> draw_rect
   end
 
-  # This pattern match ensures that the QR Codes positional markers are drawn 
+  # This pattern match ensures that the QR Codes positional markers are drawn
   # as rectangles, regardless of the shape
   defp substitute(1, row_num, col_num, %{color: color, module_size: module_size, size: size})
        when (row_num <= 8 and col_num <= 8) or
