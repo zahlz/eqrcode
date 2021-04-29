@@ -27,7 +27,7 @@ defmodule EQRCode do
     Encode.version(bin)
     |> Matrix.new()
     |> Matrix.draw_finder_patterns()
-    |> Matrix.draw_seperators()
+    |> Matrix.draw_separators()
     |> Matrix.draw_alignment_patterns()
     |> Matrix.draw_timing_patterns()
     |> Matrix.draw_dark_module()
@@ -57,7 +57,7 @@ defmodule EQRCode do
 
     Matrix.new(5)
     |> Matrix.draw_finder_patterns()
-    |> Matrix.draw_seperators()
+    |> Matrix.draw_separators()
     |> Matrix.draw_alignment_patterns()
     |> Matrix.draw_timing_patterns()
     |> Matrix.draw_dark_module()

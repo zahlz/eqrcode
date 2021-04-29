@@ -133,8 +133,8 @@ defmodule EQRCode.Matrix do
   @doc """
   Draw the seperators.
   """
-  @spec draw_seperators(t) :: t
-  def draw_seperators(%__MODULE__{matrix: matrix, modules: modules} = m) do
+  @spec draw_separators(t) :: t
+  def draw_separators(%__MODULE__{matrix: matrix, modules: modules} = m) do
     z = modules - 8
 
     matrix =
