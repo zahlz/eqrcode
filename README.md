@@ -65,6 +65,7 @@ You can specify the following attributes of the QR code:
 * `shape`: Only `square` or `circle`. The default is `square`
 * `width`: The width of the QR code in pixel. Without the width attribute, the QR code size will be dynamically generated based on the input string.
 * `viewbox`: When set to `true`, the SVG element will specify its height and width using `viewBox`, instead of explicit `height` and `width` tags.
+* `xml_tag`: When set to `false`, the SVG element will not be prefixed with an `xml` tag. This is useful for embedding the SVG in websites. The default is `true`.
 
 Default options are `[color: "#000", shape: "square", background_color: "#FFF"]`.
 

@@ -32,8 +32,6 @@ defmodule EQRCode.SVG do
     svg_options = options |> Map.new() |> set_svg_options(matrix_size)
     dimension = matrix_size * svg_options[:module_size]
 
-    skip_xml_tag = Keyword.get(options, :skip_xml_tag, false)
-
     xml_tag = ~s(<?xml version="1.0" standalone="yes"?>)
     viewbox_attr = ~s(viewBox="0 0 #{matrix_size} #{matrix_size}")
 
@@ -44,10 +42,7 @@ defmodule EQRCode.SVG do
         ~s(width="#{dimension}" height="#{dimension}" #{viewbox_attr})
       end
 
-    open_tag =
-      ~s(<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" #{
-        dimension_attrs
-      }
+    open_tag = ~s(<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" #{dimension_attrs}
       shape-rendering="crispEdges" style="background-color: #{svg_options[:background_color]}">)
 
     close_tag = ~s(</svg>)
@@ -63,14 +58,12 @@ defmodule EQRCode.SVG do
 
     content = [open_tag, result, close_tag]
 
-    content =
-      if skip_xml_tag do
-        content
-      else
-        [xml_tag | content]
-      end
-
-    Enum.join(content, "\n")
+    if Keyword.get(options, :xml_tag, false) do
+      [xml_tag | content]
+    else
+      content
+    end
+    |> Enum.join("\n")
   end
 
   defp set_svg_options(options, matrix_size) do
