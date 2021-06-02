@@ -3,7 +3,7 @@ defmodule EQRCode.SpecTable do
   @type version :: 1..40
   @type mode :: :numeric | :alphanumeric | :byte | :kenji | :eci
 
-  def error_correction_level(), do: [:l, :m, :q, :h]
+  def error_correction_level, do: [:l, :m, :q, :h]
 
   @mode [
     numeric: 0b0001,
@@ -746,7 +746,15 @@ defmodule EQRCode.SpecTable do
 
   def character_count_indicator_bits(_version, _ec_level, _mode), do: 0
 
-  # {:version, :error_correction_level, :ec_codewords_per_block, :group1_block_len, :group1_codewords_per_block, :group2_block_len, :group2_codewords_per_block}
+  # {
+  #   :version,
+  #   :error_correction_level,
+  #   :ec_codewords_per_block,
+  #   :group1_block_len,
+  #   :group1_codewords_per_block,
+  #   :group2_block_len,
+  #   :group2_codewords_per_block
+  # }
   @error_correction_table [
     {1, :l, 7, 1, 19, 0, 0},
     {1, :m, 10, 1, 16, 0, 0},

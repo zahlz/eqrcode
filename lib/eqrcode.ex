@@ -13,7 +13,7 @@ defmodule EQRCode do
   ```
   """
 
-  alias EQRCode.{Encode, ReedSolomon, Matrix}
+  alias EQRCode.{Encode, Matrix, ReedSolomon}
 
   @type error_correction_level :: :l | :m | :q | :h
 

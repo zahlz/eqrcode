@@ -64,7 +64,7 @@ defmodule EQRCode.ReedSolomon do
   def count(_), do: 1
 
   def print_count(d) do
-    count(d) |> IO.inspect(label: "#{__ENV__.file}:#{__ENV__.line}")
+    count(d) |> IO.puts(label: "#{__ENV__.file}:#{__ENV__.line}")
     d
   end
 
