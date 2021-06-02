@@ -58,7 +58,7 @@ defmodule EQRCode.SVG do
 
     content = [open_tag, result, close_tag]
 
-    if Keyword.get(options, :xml_tag, false) do
+    if Keyword.get(options, :xml_tag, true) do
       [xml_tag | content]
     else
       content
